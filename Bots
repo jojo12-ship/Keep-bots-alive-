@@ -1,0 +1,14 @@
+name: Keep Bots Alive
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Bots
+        run: |
+          curl -s -o /dev/null --max-time 10 https://cfe44e59-f7d4-48ba-b088-0a8700db06f9-00-3cepppgph4aba.spock.replit.dev/kalshi/health
+          curl -s -o /dev/null --max-time 10 https://cfe44e59-f7d4-48ba-b088-0a8700db06f9-00-3cepppgph4aba.spock.replit.dev/crypto/health
+          echo "Pinged at $(date)"
